@@ -2,23 +2,11 @@ package Terminal;
 import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Scanner;
 //* List of commands and their functions
 //* Don't remove or else the main executor can't recognize the functions
 public class Commands extends Colours {
-    static int exit = 1;
-    static int print = 1;
-    static String username = "User";
-    static String brand = "Dell";
-    static Process proc;
-    static final Scanner sc = new Scanner(System.in);
-    static final Runtime run = Runtime.getRuntime();
-    static int choice;
-    static String default_brand = "Dell";
-    static String default_username = "User";
-    static String confirm;
     public static void help() {
-    System.out.println("ECHO         Prints a string on the console or turns on or off command echoing\nVERIFY       Verifies if that the files are correctly written to the Devops disk\nTIME         Shows the time\nEXIT         Exits the terminal\nADD          Adds two numbers\nSUB          Subtracts two numbers\nMUL          Multiplies two numbers\nDIV          Divides two numbers\nUSERNAME     Sets your username\nBRANDTYPE    Sets the user's computer brand\nOPEN         Opens a program. To see the list of programs that work, type \"programs\" in the command line\nSHUTDOWN     Allows proper and local shutdown of the computer\nJLIST        Gives a bit of help about java lists\nJPROJECT     Gives some projects to do in java\nTODOGER      Runs a todo manager\nASCV         Gives the ascii value of characters\nCOLOUR       Same as \"Colour /?\" which gives a list of colours usable\n");
+    System.out.println("ECHO         Prints a string on the console or turns on or off command echoing\nVERIFY       Verifies if that the files are correctly written to the Devops disk\nTIME         Shows the time\nEXIT         Exits the terminal\nADD          Adds two numbers\nSUB          Subtracts two numbers\nMUL          Multiplies two numbers\nDIV          Divides two numbers\nUSERNAME     Sets your username\nBRANDTYPE    Sets the user's computer brand\nOPEN         Opens a program. To see the list of programs that work, type \"programs\" in the command line\nSHUTDOWN     Allows proper and local shutdown of the computer\nJLIST        Gives a bit of help about java lists\nJPROJECT     Gives some projects to do in java\nTODOGER      Runs a todo manager\nASCV         Gives the ascii value of characters\nCOLOUR       Same as \"Colour /?\" which gives a list of colours usable\nNumGuess     Plays a number guessing game *Range of guessing numbers is custamizable*\nRPS          Plays rock paper scissors *Player or computer*\nCLEAR        Clears the terminal\n");
 }
 
 public static void echo() {
@@ -37,6 +25,7 @@ public static void echo_off() {
 
 public static void verify() {
         int chance = (int)(1 + Math.random()* 1000);
+        System.out.println(chance);
         if (chance >= 1) {
             System.out.println("Files are correctly written to the disk.\n");
         } else if (chance == 1000) {
@@ -109,6 +98,7 @@ public static void brandtype() {
 }
 
 public static void applications() {
+    final Runtime run = Runtime.getRuntime();
     System.out.print("Type the program you want to open: ");
     String program = sc.nextLine();
     try {
@@ -297,5 +287,107 @@ public static void todo_Manager() {
  }
  public static void colour() {
    System.out.println("-1 = Reset\n0 = Black\n1 = Red\n2 = Green\n3 = Blue\n1B = Red bright\n2B = Green bright\n");
-}
+
+ }
+ public static void number_guessing__game() {
+    System.out.print("Type the range from you want to guess the number: ");
+    range = sc.nextInt();
+    System.out.print("Type the number of chances allowed: ");
+    chance = sc.nextInt();
+    num = (int)(1 + Math.random()* range);
+    do {
+        System.out.println("Chances - " + chance);
+        System.out.print("Type your number guess 1 - " + range + ": ");
+        guess = sc.nextInt();
+        if (chance != 0) {
+            chance--;
+        } else;
+        System.out.println(chance);
+        if (guess > num) {
+            System.out.println("Lower!");
+        } else if (guess < num) {
+            System.out.println("Higher!");
+        } else if (chance == 0) {
+            System.out.println("You used all the chances!\n");
+        } else {
+            System.out.println("You won!\n");
+            sc.nextLine();
+        }
+    } while (guess != num || chance == 0);
+ }
+
+ public static void RPS() {
+    do {
+        int RPSCHOICE;
+        System.out.print("0) Exit\n1) 1v1\n2) Computer\nType your choice: ");
+        RPSCHOICE = sc.nextInt();
+        switch(RPSCHOICE) {
+          case 0: break;
+          case 1:
+          sc.nextLine();
+          System.out.print("Type the username of player 1: ");
+          String pl1username = sc.nextLine();
+          System.out.print("Type the username of player 2: ");
+          String pl2username = sc.nextLine();
+          System.out.print(pl1username + ": Rock paper scissors - Choose one: ");
+          String pl1choice = sc.nextLine();
+          if (pl1choice.equalsIgnoreCase("Rock") || pl1choice.equalsIgnoreCase("Paper") || pl1choice.equalsIgnoreCase("Scissors")) {
+            clear();
+            System.out.print(pl2username + ": Rock paper scissors - Choose one: ");
+            String pl2choice = sc.nextLine();
+            if(pl2choice.equalsIgnoreCase("Rock") || pl2choice.equalsIgnoreCase("Paper") || pl2choice.equalsIgnoreCase("Scissors")) {
+                clear();
+                  if  (pl1choice.equalsIgnoreCase("Paper") && pl2choice.equalsIgnoreCase("Rock") || pl1choice.equalsIgnoreCase("Scissors") && pl2choice.equalsIgnoreCase("Paper") || pl1choice.equalsIgnoreCase("Rock") && pl2choice.equalsIgnoreCase("Scissors")) {
+                    System.out.println(pl1username + " has won!");
+                   } else if (pl2choice.equalsIgnoreCase("Paper") && pl1choice.equalsIgnoreCase("Rock") || pl2choice.equalsIgnoreCase("Scissors") && pl1choice.equalsIgnoreCase("Paper") || pl2choice.equalsIgnoreCase("Rock") && pl1choice.equalsIgnoreCase("Scissors")){
+                      System.out.println(pl2username + " has won!");
+                   } else if(pl1choice.equalsIgnoreCase(pl2choice)) {
+                      System.out.println("It's a tie!");
+                   }
+          } else {
+            System.out.println("Invalid Input");
+          }
+        } else {
+            System.out.println("Invalid Input");
+        }
+        break;
+        case 2:
+        sc.nextLine();
+        int computer_choice = (int)(1 + Math.random()*3);
+        System.out.print("Rock paper scissors - Choose one: ");
+        pl1choice = sc.nextLine();
+        if (pl1choice.equalsIgnoreCase("Rock") || pl1choice.equalsIgnoreCase("Paper") || pl1choice.equalsIgnoreCase("Scissors")) {
+               if (pl1choice.equalsIgnoreCase("Rock") && computer_choice == 1) {
+                System.out.println("The computer won since it chose paper!");
+               } else if (pl1choice.equalsIgnoreCase("Rock") && computer_choice == 2) {
+                System.out.println("You have won since the computer chose scissors!");
+               } else if (pl1choice.equalsIgnoreCase("Rock") && computer_choice == 3) {
+                System.out.println("Its a tie since the computer and you both chose rock!");
+               } else if (pl1choice.equalsIgnoreCase("Paper") && computer_choice == 1) {
+                System.out.println("The computer won since it chose scissors!");
+               } else if (pl1choice.equalsIgnoreCase("Paper") && computer_choice == 2) {
+                System.out.println("You won since the computer chose rock!");
+               } else if (pl1choice.equalsIgnoreCase("Paper") && computer_choice == 3) {
+                System.out.println("Its a tie since the computer and you both chose paper!");
+               } else if (pl1choice.equalsIgnoreCase("Scissors") && computer_choice == 1) {
+                System.out.println("The computer won since it chose rock!");
+               } else if (pl1choice.equalsIgnoreCase("Scissors") && computer_choice == 2) {
+                System.out.println("You won since the computer chose paper!");
+               } else if (pl1choice.equalsIgnoreCase("Scissors") && computer_choice == 3) {
+                System.out.println("Its a tie since the computer and you both chose scissors!");
+               } else {
+                System.out.println("Invalid Input");
+               }
+        }
+        break;
+        default:
+        System.out.println("Invaild choice");
+        break;
+      }
+    } while (RPSCHOICE != 0);
+ }
+ public static void clear() {
+    System.out.print("\033[H\033[2J"); 
+    System.out.flush();  
+ }
 }

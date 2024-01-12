@@ -4,7 +4,7 @@ import java.io.IOException;
 //* Very important. If removed, the terminal will not work.
 public class Executor extends Commands {
     public static void main(String[] args) throws IOException {
-    System.out.println("Nevertx NeVerox[Version 1.1.4102.3405]\n(c) Nevertx. All rights unreserved.\n");
+    System.out.println("Nevertx NeVerox[Version 1.2.1202.14308]\n(c) Nevertx. All rights unreserved.\n");
     do {
         if (print == 1) {
             System.out.print("C:\\" + username + "\\" + brand + ">");
@@ -104,7 +104,7 @@ public static void executeCmd(String cmd) throws IOException {
                 case "colour","Colour","COLOUR","colour /?","Colour /?","COLOUR /?":
                 colour();
                 break;
-                case "colour -1","Colour -1","COLOUR -1":
+                case "colour -1","Colour -1","CvvOLOUR -1":
                 System.out.println(RESET);
                 break;
                 case "colour 0","Colour 0","COLOUR 0":
@@ -125,6 +125,15 @@ public static void executeCmd(String cmd) throws IOException {
                 case "colour 2B","Colour 2B","COLOUR 2B":
                 System.out.println(GREEN_BRIGHT);
                 break;
+                case "numguess", "Numguess", "NumGuess", "NUMGUESS":
+                number_guessing__game();
+                break;
+                case "clear","Clear","CLEAR":
+                clear();
+                break;
+                case "rps","Rps","RPS":
+                RPS();
+                break;
                 default:
                 if (!cmd.isEmpty()) {
                     System.out.println("\'" + cmd + "\'" + " is not recognized as a internal or external command.\n");
@@ -132,4 +141,4 @@ public static void executeCmd(String cmd) throws IOException {
                 break;
         }
     }
-}
+} 

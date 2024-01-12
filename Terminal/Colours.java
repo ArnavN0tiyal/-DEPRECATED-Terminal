@@ -1,6 +1,6 @@
 package Terminal;
 // Contains all colour codes
-public class Colours {
+public class Colours extends Variables {
        public static final String RESET = "\033[0m";  
        public static final String BLACK = "\033[0;30m"; 
        public static final String RED = "\033[0;31m";  
