@@ -4,15 +4,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 //* List of commands and their functions
 //* Don't remove or else the main executor can't recognize the functions
-public class Commands extends Colours {
-    public static void help() {
+public class Commands extends Variables {
+public static void help() {
     System.out.println("ECHO         Prints a string on the console or turns on or off command echoing\nVERIFY       Verifies if that the files are correctly written to the Devops disk\nTIME         Shows the time\nEXIT         Exits the terminal\nADD          Adds two numbers\nSUB          Subtracts two numbers\nMUL          Multiplies two numbers\nDIV          Divides two numbers\nUSERNAME     Sets your username\nBRANDTYPE    Sets the user's computer brand\nOPEN         Opens a program. To see the list of programs that work, type \"programs\" in the command line\nSHUTDOWN     Allows proper and local shutdown of the computer\nJLIST        Gives a bit of help about java lists\nJPROJECT     Gives some projects to do in java\nTODOGER      Runs a todo manager\nASCV         Gives the ascii value of characters\nCOLOUR       Same as \"Colour /?\" which gives a list of colours usable\nNumGuess     Plays a number guessing game *Range of guessing numbers is custamizable*\nRPS          Plays rock paper scissors *Player or computer*\nCLEAR        Clears the terminal\n");
 }
 
 public static void echo() {
-    System.out.print("Type the sentence you want to print: ");
-    String line = sc.nextLine();
-    System.out.println(line + "\n");
+        String processed = cmd.replace("echo", "");
+        System.out.println(processed.trim() + "\n");
 }
 
 public static void echo_on() {
@@ -24,8 +23,6 @@ public static void echo_off() {
 }
 
 public static void verify() {
-        int chance = (int)(1 + Math.random()* 1000);
-        System.out.println(chance);
         if (chance >= 1) {
             System.out.println("Files are correctly written to the disk.\n");
         } else if (chance == 1000) {
@@ -132,6 +129,7 @@ public static void programs() {
 public static void shutdown_help() {
     System.out.println("How to use: shutdown /i, /l, /s, /sg, /r, /g, /a, /p, /h\nNo args    This is the same as doing /?\n/i         Shows the graphical user interface\n/?         Gives the type of shutdown the user can do\n/l         Logs off the computer\n/s         Complete shutdown of the computer\n/sg        Shutdowns the computer. Then on the next boot, if automatic sign in is enabled then it will automaticly sign in to the user's computer\n/r         Shutdowns then restarts\n/g         Shutdowns and restarts. After the system is rebooted, if automatic sign in is enabled, the user will automaticly sign in\n/a         Abort a system shutdown *Can only be used in time out period*\n/p         Turns off the computer without any warning or time out\n/h         Hibernate the local computer\n");
 }
+
 public static void shutdown_1() throws IOException {
     System.out.print("Are you sure?\nType yes or no: ");
     confirm = sc.nextLine();
@@ -230,9 +228,11 @@ public static void java_list() {
         System.out.println("Hashset:\nFormat is same as arraylists or linkedlists\nFunctions:\n1) hashset.add(\"Hello World\");\n2) hashset.contains(\"Hello World\");\n3) hashset.remove(0);\n4) hashset.clear();\n5) hashset.size();\nLooping through a hashmap is also the same as arraylists and linkedlists");
         System.out.println("Wrapper Classes:\nWe can't do ArrayList<int> array = new ArrayList<int>(); etc with any list type, instead, we use wrapper classes, like: Integer x = 10;, ArrayList<Boolean> array = new ArrayList<Boolean>(); etc. The types are:\n1) int to Integer\n2) float to Float\n3) double to Double\n4) boolean to Boolean\n5) char to Character\nWe can also get certain information about variables, Here are some functions which get certain information about variables:\n1) intvalue()\n2) byteValue()\n3) shortValue()\n4) longValue()\n5) floatValue()\n6) doubleValue()\n7) charValue()\n8) booleanValue()\n");
  }
+
 public static void java_project() {
     System.out.println("Projects: 1) Number Guessing Game 2) Temperature Converter 3) Simple Chat Application 4) Guess the Word Game 5) Rock, Paper, Scissors Game 6) Basic ATM Simulator\n");
  }
+
 public static void todo_Manager() {
     ArrayList<String> Tasks = new ArrayList<String>();
     Tasks.add("Tasks:");
@@ -285,35 +285,37 @@ public static void todo_Manager() {
     sc.nextLine();
     System.out.println(ascii_value + "\n");
  }
+
  public static void colour() {
    System.out.println("-1 = Reset\n0 = Black\n1 = Red\n2 = Green\n3 = Blue\n1B = Red bright\n2B = Green bright\n");
 
  }
+
  public static void number_guessing__game() {
     System.out.print("Type the range from you want to guess the number: ");
     range = sc.nextInt();
     System.out.print("Type the number of chances allowed: ");
-    chance = sc.nextInt();
+    chances = sc.nextInt();
     num = (int)(1 + Math.random()* range);
     do {
-        System.out.println("Chances - " + chance);
+        System.out.println("Chances - " + chances);
         System.out.print("Type your number guess 1 - " + range + ": ");
         guess = sc.nextInt();
-        if (chance != 0) {
-            chance--;
+        if (chances != 0) {
+            chances--;
         } else;
-        System.out.println(chance);
+        System.out.println(chances);
         if (guess > num) {
             System.out.println("Lower!");
         } else if (guess < num) {
             System.out.println("Higher!");
-        } else if (chance == 0) {
+        } else if (chances == 0) {
             System.out.println("You used all the chances!\n");
         } else {
             System.out.println("You won!\n");
             sc.nextLine();
         }
-    } while (guess != num || chance == 0);
+    } while (guess != num || chances == 0);
  }
 
  public static void RPS() {
@@ -338,11 +340,11 @@ public static void todo_Manager() {
             if(pl2choice.equalsIgnoreCase("Rock") || pl2choice.equalsIgnoreCase("Paper") || pl2choice.equalsIgnoreCase("Scissors")) {
                 clear();
                   if  (pl1choice.equalsIgnoreCase("Paper") && pl2choice.equalsIgnoreCase("Rock") || pl1choice.equalsIgnoreCase("Scissors") && pl2choice.equalsIgnoreCase("Paper") || pl1choice.equalsIgnoreCase("Rock") && pl2choice.equalsIgnoreCase("Scissors")) {
-                    System.out.println(pl1username + " has won!");
+                    System.out.println(pl1username + " has won!\n");
                    } else if (pl2choice.equalsIgnoreCase("Paper") && pl1choice.equalsIgnoreCase("Rock") || pl2choice.equalsIgnoreCase("Scissors") && pl1choice.equalsIgnoreCase("Paper") || pl2choice.equalsIgnoreCase("Rock") && pl1choice.equalsIgnoreCase("Scissors")){
-                      System.out.println(pl2username + " has won!");
+                      System.out.println(pl2username + " has won!\n");
                    } else if(pl1choice.equalsIgnoreCase(pl2choice)) {
-                      System.out.println("It's a tie!");
+                      System.out.println("It's a tie!\n");
                    }
           } else {
             System.out.println("Invalid Input");
@@ -353,28 +355,27 @@ public static void todo_Manager() {
         break;
         case 2:
         sc.nextLine();
-        int computer_choice = (int)(1 + Math.random()*3);
         System.out.print("Rock paper scissors - Choose one: ");
         pl1choice = sc.nextLine();
         if (pl1choice.equalsIgnoreCase("Rock") || pl1choice.equalsIgnoreCase("Paper") || pl1choice.equalsIgnoreCase("Scissors")) {
                if (pl1choice.equalsIgnoreCase("Rock") && computer_choice == 1) {
-                System.out.println("The computer won since it chose paper!");
+                System.out.println("The computer won since it chose paper!\n");
                } else if (pl1choice.equalsIgnoreCase("Rock") && computer_choice == 2) {
-                System.out.println("You have won since the computer chose scissors!");
+                System.out.println("You have won since the computer chose scissors!\n");
                } else if (pl1choice.equalsIgnoreCase("Rock") && computer_choice == 3) {
-                System.out.println("Its a tie since the computer and you both chose rock!");
+                System.out.println("Its a tie since the computer and you both chose rock!\n");
                } else if (pl1choice.equalsIgnoreCase("Paper") && computer_choice == 1) {
-                System.out.println("The computer won since it chose scissors!");
+                System.out.println("The computer won since it chose scissors!\n");
                } else if (pl1choice.equalsIgnoreCase("Paper") && computer_choice == 2) {
-                System.out.println("You won since the computer chose rock!");
+                System.out.println("You won since the computer chose rock!\n");
                } else if (pl1choice.equalsIgnoreCase("Paper") && computer_choice == 3) {
-                System.out.println("Its a tie since the computer and you both chose paper!");
+                System.out.println("Its a tie since the computer and you both chose paper!\n");
                } else if (pl1choice.equalsIgnoreCase("Scissors") && computer_choice == 1) {
-                System.out.println("The computer won since it chose rock!");
+                System.out.println("The computer won since it chose rock!\n");
                } else if (pl1choice.equalsIgnoreCase("Scissors") && computer_choice == 2) {
-                System.out.println("You won since the computer chose paper!");
+                System.out.println("You won since the computer chose paper!\n");
                } else if (pl1choice.equalsIgnoreCase("Scissors") && computer_choice == 3) {
-                System.out.println("Its a tie since the computer and you both chose scissors!");
+                System.out.println("Its a tie since the computer and you both chose scissors!\n");
                } else {
                 System.out.println("Invalid Input");
                }
