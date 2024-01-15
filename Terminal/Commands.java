@@ -6,11 +6,11 @@ import java.util.ArrayList;
 //* Don't remove or else the main executor can't recognize the functions
 public class Commands extends Variables {
 public static void help() {
-    System.out.println("ECHO         Prints a string on the console or turns on or off command echoing\nVERIFY       Verifies if that the files are correctly written to the Devops disk\nTIME         Shows the time\nEXIT         Exits the terminal\nADD          Adds two numbers\nSUB          Subtracts two numbers\nMUL          Multiplies two numbers\nDIV          Divides two numbers\nUSERNAME     Sets your username\nBRANDTYPE    Sets the user's computer brand\nOPEN         Opens a program. To see the list of programs that work, type \"programs\" in the command line\nSHUTDOWN     Allows proper and local shutdown of the computer\nJLIST        Gives a bit of help about java lists\nJPROJECT     Gives some projects to do in java\nTODOGER      Runs a todo manager\nASCV         Gives the ascii value of characters\nCOLOUR       Same as \"Colour /?\" which gives a list of colours usable\nNumGuess     Plays a number guessing game *Range of guessing numbers is custamizable*\nRPS          Plays rock paper scissors *Player or computer*\nCLEAR        Clears the terminal\n");
+    System.out.println("ECHO         Prints a string on the console or turns on or off command echoing\nVERIFY       Verifies if that the files are correctly written to the Nevertx disk\nTIME         Shows the time\nEXIT         Exits the terminal\nADD          Adds two numbers\nSUB          Subtracts two numbers\nMUL          Multiplies two numbers\nDIV          Divides two numbers\nUSERNAME     Sets your username\nBRANDTYPE    Sets the user's computer brand\nOPEN         Opens a program. To see the list of programs that work, type \"programs\" in the command line\nSHUTDOWN     Allows proper and local shutdown of the computer\nJLIST        Gives a bit of help about java lists\nJPROJECT     Gives some projects to do in java\nTODOGER      Runs a todo manager\nASCV         Gives the ascii value of characters\nCOLOUR       Same as \"Colour /?\" which gives a list of colours usable\nNumGuess     Plays a number guessing game *Range of guessing numbers is custamizable*\nRPS          Plays rock paper scissors *Player or computer*\nCLEAR        Clears the terminal\nDIR          Shows the files in a folder using cmd\n");
 }
 
 public static void echo() {
-        String processed = cmd.replace("echo", "");
+        String processed = cmd.replace("echo" , "");
         System.out.println(processed.trim() + "\n");
 }
 
@@ -389,6 +389,11 @@ public static void todo_Manager() {
  }
  public static void clear() {
     System.out.print("\033[H\033[2J"); 
-    System.out.flush();  
+    System.out.flush();
+ }
+
+public static void dir() throws IOException {
+    proc = run.exec(new String[]{"cmd","/C","Start","dir"});
+    System.out.println("");
  }
 }
