@@ -104,7 +104,7 @@ public static void executeCmd(String cmd) throws IOException {
                     case "colour","Colour","COLOUR","colour /?","Colour /?","COLOUR /?":
                     colour();
                     break;
-                    case "colour -1","Colour -1","CvvOLOUR -1":
+                    case "colour -1","Colour -1","COLOUR -1":
                     System.out.println(RESET);
                     break;
                     case "colour 0","Colour 0","COLOUR 0":
