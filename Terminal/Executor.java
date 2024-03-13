@@ -4,7 +4,7 @@ import java.io.IOException;
 //* Very important. If removed, the terminal will not work.
 public class Executor extends Commands {
     public static void main(String[] args) throws IOException {
-    System.out.println("Nevertx NeVerox[Version 1.2.2095.21095]\n(c) Nevertx. All rights unreserved.\n");
+    System.out.println("Nevertx NeVerox[Version 1.2.2095.21095]\n(c) Nevertx. All rights unreserved.\nPlease note that this terminal is deprecated. Download the new version, named VShell, from my github\n");
     do {
         if (print == 1) {
             System.out.print("C:\\" + username + "\\" + brand + ">");
